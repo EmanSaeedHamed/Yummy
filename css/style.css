@@ -1,0 +1,122 @@
+:root{
+    --bg-body : #0D0D0D;
+}
+body{
+    background-color: var(--bg-body);
+}
+
+/** nav  */
+nav{
+    z-index: 99999;
+    transform: translateX(-15.625rem);
+    transition: all 0.5s;
+}
+#toggle-nav{
+    cursor: pointer;
+}
+.nav-side{
+    width: 4.375rem;
+    background-color: white;
+}
+.nav-links-side{
+    width: 15.625rem;
+    background-color: var(--bg-body);
+}
+.nav-toggle{
+    transform: translateX(0);
+}
+#toggle-nav i{
+    font-size: 2rem;
+}
+nav li {
+    cursor: pointer;
+}
+nav i {
+    cursor: pointer;
+}
+.nav-links-side li {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.nav-toggle .nav-links-side li:nth-child(1) {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+.nav-toggle .nav-links-side li:nth-child(2) {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+.nav-toggle .nav-links-side li:nth-child(3) {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+.nav-toggle .nav-links-side li:nth-child(4) {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.4s;
+}
+
+.nav-toggle .nav-links-side li:nth-child(5) {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+/** meals */
+.meal{
+    cursor: pointer;
+}
+.meal-layer{
+    inset: 0;
+    background-color: #f9f6f6ca;
+    transition: all 0.5s;
+    transform: translateY(100%);
+}
+.meal:hover .meal-layer{
+    transform: translateY(0);
+}
+
+/** area  */
+.country{
+    cursor: pointer;
+}
+.country i{
+    font-size: 4rem;
+}
+
+/** contact  */
+.contact .container{
+   width: 60%;
+}
+
+/** recipes  */
+.recipes{
+    color: #fff;
+}
+
+/** ingredients  */
+.ingredients p,
+#categories p{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/** search  */
+.form-control::placeholder {
+    color: #6c757d;
+}
+
+/** loading */
+.loading-screen{
+    z-index: 9999999;
+    display: flex;
+}
