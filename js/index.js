@@ -59,7 +59,6 @@ async function getMeals () {
    let res = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s");
    res = await res.json();
    let limitedMeals = res.meals ? res.meals.slice(0, 20) : null;
-   console.log(limitedMeals);
    if(limitedMeals.length > 0) {
     loadingScreen.classList.add("d-none");
      clear();
@@ -71,7 +70,6 @@ async function getMeals () {
 async function getRecipe (id) {
    let res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
    let meal = await res.json();
-   console.log(meal.meals);
    if(meal.meals.length > 0) {
     loadingScreen.classList.add("d-none");
     document.querySelector(".recipes").classList.remove("d-none");
@@ -83,7 +81,6 @@ async function getCatMeals (catName) {
    let res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${catName}`);
    let meal = await res.json();
    let limitedMeals = meal.meals ? meal.meals.slice(0, 20) : null;
-   console.log(limitedMeals);
    if (limitedMeals.length > 0) {
     loadingScreen.classList.add("d-none");
     clear();
@@ -97,7 +94,6 @@ async function getCatMeals (catName) {
 async function getAreaMeals (country) {
    let res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`);
    res = await res.json();
-   console.log(res.meals);
    if (res.meals.length > 0) {
     loadingScreen.classList.add("d-none");
     clear();
@@ -111,7 +107,6 @@ async function getAreaMeals (country) {
 async function getIngredientMeals (ingredientName) {
    let res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientName}`);
    res = await res.json();
-   console.log(res.meals);
    if (res.meals.length > 0) {
     loadingScreen.classList.add("d-none");
    clear();
@@ -125,7 +120,6 @@ async function getIngredientMeals (ingredientName) {
 async function getCategories () {
    let res = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
    res = await res.json();
-   console.log(res.categories);
    if (res.categories.length > 0) {
     loadingScreen.classList.add("d-none");
    displayCategories(res.categories);
@@ -136,7 +130,6 @@ async function getCategories () {
 async function getArea () {
    let res = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
    let area = await res.json();
-   console.log(area.meals);
    if (area.meals.length > 0) {
     loadingScreen.classList.add("d-none");
     clear();
@@ -151,8 +144,6 @@ async function getIngredients () {
    let res = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list");
    res = await res.json();
    let limitedIngredients = res.meals ? res.meals.slice(0, 20) : null;
-
-   console.log(limitedIngredients);
    if (limitedIngredients.length > 0) {
     loadingScreen.classList.add("d-none");
             clear();
@@ -189,7 +180,6 @@ async function getSearchLetterMeals(letter) {
 async function getSearchNameMeals (name) {
    let res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
    res = await res.json();
-   console.log(res.meals);
    document.querySelector(".meals").classList.remove("d-none");
    if (res.meals &&
        res.meals.length > 0
@@ -249,7 +239,6 @@ function displayRecipe (meal) {
       }
         
     }
-    console.log(list);
     
     
      let cartona = `
@@ -281,7 +270,6 @@ function displayRecipe (meal) {
 }
 
 function displayCategories (arr) {
-    console.log(arr);
     
     let cartona = ``;
     for (let i = 0; i < arr.length; i++) {
@@ -391,7 +379,6 @@ meals.addEventListener("click", function(e){
     
     if (meal) {
         let mealID = meal.dataset.id; 
-        console.log("Meal ID:", mealID);
         clear();
         getRecipe(mealID);
         loadingScreen.classList.remove("d-none");
@@ -401,13 +388,10 @@ meals.addEventListener("click", function(e){
 categories.addEventListener("click", function(e){
     
     let mealsCategory = e.target.closest(".meal");
-    console.log(mealsCategory);
     
     if (mealsCategory) {
         let catID = mealsCategory.dataset.id; 
-        let cat = mealsCategory.dataset.cat
-        console.log("Meal ID:", catID);
-        console.log("cat:", cat);
+        let cat = mealsCategory.dataset.cat;
         clear();
         getCatMeals(cat);
         loadingScreen.classList.remove("d-none");
@@ -424,11 +408,9 @@ areaLink.addEventListener("click", function() {
 area.addEventListener("click", function(e){
     
     let mealsArea = e.target.closest(".country");
-    console.log(mealsArea);
     
     if (mealsArea) {
         let country = mealsArea.dataset.country
-        console.log("country:", country);
         clear();
         getAreaMeals(country);
         loadingScreen.classList.remove("d-none");
@@ -445,11 +427,9 @@ ingredientsLink.addEventListener("click", function() {
 ingredient.addEventListener("click", function(e){
     
     let mealsIngredients = e.target.closest(".country");
-    console.log(mealsIngredients);
     
     if (mealsIngredients) {
         let ingredientName = mealsIngredients.dataset.ingredient;
-        console.log("ingredientName:", ingredientName);
         clear();
         getIngredientMeals(ingredientName);
         loadingScreen.classList.remove("d-none");
@@ -477,7 +457,6 @@ searchLetterInput.addEventListener("input", function() {
 });
 
 searchNameInput.addEventListener("input",function(){
-    console.log(searchNameInput.value);
     getSearchNameMeals(searchNameInput.value);
     loadingScreen.classList.remove("d-none");
     
@@ -500,7 +479,6 @@ nameInput.addEventListener("input",function(){
         regex.nameInput.isValid = false;
         nameInput.nextElementSibling.classList.remove("d-none");
     }
-    console.log(regex.nameInput.isValid);
     toggleSubmitBtn();
     
 });
@@ -514,7 +492,6 @@ emailInput.addEventListener("input",function(){
         regex.emailInput.isValid = false;
         emailInput.nextElementSibling.classList.remove("d-none");
     }
-    console.log(regex.emailInput.isValid);
     toggleSubmitBtn();
 });
 
@@ -527,7 +504,6 @@ phoneInput.addEventListener("input",function(){
         regex.phoneInput.isValid = false;
         phoneInput.nextElementSibling.classList.remove("d-none");
     }
-    console.log(regex.phoneInput.isValid);
     toggleSubmitBtn();
 });
 
@@ -540,7 +516,6 @@ ageInput.addEventListener("input",function(){
         regex.ageInput.isValid = false;
         ageInput.nextElementSibling.classList.remove("d-none");
     }
-    console.log(regex.ageInput.isValid);
     toggleSubmitBtn();
 });
 
@@ -553,7 +528,6 @@ passwordInput.addEventListener("input",function(){
         regex.passwordInput.isValid = false;
         passwordInput.nextElementSibling.classList.remove("d-none");
     }
-    console.log(regex.passwordInput.isValid);
     toggleSubmitBtn();
 });
 

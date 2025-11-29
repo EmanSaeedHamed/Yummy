@@ -4,6 +4,11 @@
 body{
     background-color: var(--bg-body);
 }
+.container:not(.contact .container) {
+    padding-left: 5rem;
+}
+
+
 
 /** nav  */
 nav{
